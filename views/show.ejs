@@ -1,0 +1,31 @@
+<%- include('./partials/header.ejs') %>
+    <h1>show page for <%= job.name %></h1>
+    <div><%= job.address %></div>
+    <div class="row">
+        <div class="col-2">
+            <img class="img-fluid" src="<%= job.image %>" alt="">
+        </div>
+    </div>
+    <div><%= job.package %></div>
+    <div><%= job.discription %></div>
+    <div><%= job.cgpa %></div>
+    <div><%= job.deadline %></div>
+    <div><%= job.type %></div>
+    <a class="btn btn-info" href="/jobs/<%= job._id %>/apply">Apply</a>
+
+    <% if (currentUser && currentUser.isAdmin) { %>
+        <a class="btn btn-warning" href="/jobs/<%= job._id %>/edit">Edit</a>
+        <form action="/jobs/<%= job._id %>?_method=DELETE" method="post">
+            <input class="btn btn-danger" type="submit" value="Delete">
+        </form>
+    <% } %>
+    
+
+    <% if (currentUser && currentUser.isAdmin) { %>
+        <h1>list of students that have applied</h1>
+        <% for( let student of job.appliedUsers) { %>
+        <div><%= student.username %></div>
+        <% } %>
+    <% } %>
+
+    <%- include('./partials/footer.ejs') %>
