@@ -55,6 +55,6 @@ app.use(jobRoutes);
 app.use(notifRoutes);
 app.use(authRoutes);
 
-app.listen(3000, function(){
+app.listen(process.env.port, function(){
     console.log('server started on port 3000');
 });
